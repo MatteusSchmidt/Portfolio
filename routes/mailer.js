@@ -22,9 +22,8 @@ router.post("/", (req, res) => {
     let data = {};
     form.parse(req, function (err, fields) {
         if (err) {
-            console.log(err);
-            res.status(500).send("Error parsing form data.");
-            return;
+            console.error(err);
+            return res.status(500).json({ error: "Error parsing form data." });
         }
         Object.keys(fields).forEach(function (property) {
             data[property] = fields[property].toString();
@@ -39,10 +38,10 @@ router.post("/", (req, res) => {
 
         transporter.sendMail(mail, (err, info) => {
             if (err) {
-                console.log(err);
-                res.status(500).send("Something went wrong.");
+                console.error(err);
+                return res.status(500).json({ error: "Something went wrong." });
             } else {
-                res.status(200).json({ message: "Email successfully sent to recipient!" });
+                return res.status(200).json({ message: "Email successfully sent to recipient!" });
             }
         });
     });
