@@ -100,8 +100,8 @@ img {
     align-items: center;
     border-radius: 33px;
     height: 55px;
-    transition: -webkit-transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out;
+    transition: -webkit-transform 0.1s ease-in-out;
+    transition: transform 0.1s ease-in-out;
 }
 
 .github {
@@ -331,7 +331,6 @@ section h2 {
     overflow: hidden;
     height: auto;
     align-items: stretch;
-    /*transition: background-color 0.2s ;*/
     transition: transform 0.1s ease-out;
     transform-origin: bottom;
 }
@@ -515,9 +514,9 @@ section h2 {
     position: absolute;
     justify-content: center;
     display: block;
-    background: rgba(255, 255, 255, 0.4) center;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.2) center;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     align-items: center;
     margin: -50px 0 0 -130px;
     /*   height: 100;
@@ -531,7 +530,7 @@ section h2 {
     position: absolute;
     justify-content: center;
     width: 300px;
-    display: block;
+    display: inline-block;
     margin-top: 130px;
     font-weight: 1000;
     font-size: 26px;
@@ -539,19 +538,25 @@ section h2 {
     background-size: cover;
     background-position: center center;
     border: 1px solid rgba(119, 119, 119, 0.3);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.5);
     border-radius: 1rem;
+    transition: opacity 1s ease-in-out, transform .1s ease-in-out;
 }
 
-.project-title:hover, .dropdown:hover {
+.project-title:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.dropdown:hover {
     cursor: pointer;
 }
 
 .dropdown {
     pointer-events: auto;
     display: block;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     rotate: 180deg;
     margin-top: 20px;
 }
@@ -584,10 +589,6 @@ section h2 {
 .skill-object.fade-in-up {
     animation: fade-in-up 0.5s forwards;
 }
-
-/*.skill-object:hover {*/
-/*    transform: scale(1.2);*/
-/*}*/
 
 @keyframes fade-in-up {
     from {
@@ -1093,8 +1094,8 @@ input:focus, textarea:focus, select:focus {
     width: 110px;
     height: 40px;
     background-color: #ff7f26;
-    transition: -webkit-transform 0.15s ease-in-out;
-    transition: transform 0.15s ease-in-out;
+    transition: -webkit-transform 0.1s ease-in-out;
+    transition: transform 0.1s ease-in-out;
 }
 
 .button-group button[type="reset"] {
@@ -1160,6 +1161,13 @@ footer {
 
     .project-description-container {
         width: 100%;
+    }
+
+    .project-title {
+        width: 250px;
+        margin-top: 130px;
+        font-weight: 1000;
+        font-size: 22px;
     }
 
     /* Skills */
@@ -1411,6 +1419,16 @@ footer {
         .project-description-container {
             margin: 0;
             padding-right: 20px;
+        }
+        .project-title {
+            width: 200px;
+            margin-top: 130px;
+            font-weight: 1000;
+            font-size: 20px;
+        }
+        .dropdown {
+            width: 30px;
+            height: 30px;
         }
         .made-with img {
             margin-left: 10px;

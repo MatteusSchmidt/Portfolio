@@ -67,16 +67,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         overlays.forEach(overlay => {
             overlay.style.opacity = '1';
-            overlay.style.transition = "opacity 0.5s ease-out";
+            overlay.style.transition = "opacity 1s ease-out";
         });
 
         placeholders.forEach(placeholder => {
-            placeholder.style.height = "400px";
+            if (window.innerWidth <= 1024) {
+                placeholder.style.height = "360px";
+            }
+            else {
+                placeholder.style.height = "400px";
+            }
         });
 
         titles.forEach(title => {
             title.style.opacity = "1";
-            title.style.transition = "opacity 0.5s ease-out";
+            // title.style.transition = "opacity 1s ease-out";
         });
 
         projects.forEach((project, index) => {
@@ -84,25 +89,30 @@ document.addEventListener("DOMContentLoaded", () => {
             const baseScale = 1 - index * 0.03; // Decrease scale with index
             const width = Math.min(maxWidth, window.innerWidth - 100);
 
-            project.style.marginTop = `${index === 0 ? -453 : -403}px`;
+            if (window.innerWidth <= 1024) {
+                project.style.marginTop = `${index === 0 ? -443 : -393}px`;
+            }
+            else {
+                project.style.marginTop = `${index === 0 ? -453 : -403}px`;
+            }
             project.style.position = "absolute"; // Stack on top of each other
             project.style.opacity = "1";
             project.style.width = `${width}px`; // Apply dynamic width based on scale
             project.style.transform = `scale(${baseScale}) translateY(${index * 5}px) rotate(${index !== 0 ? ((index % 2 === 0 ? -1 : 1) * 2) : 0}deg)`; // Combine scale and stacking
             project.style.zIndex = `${-1-index}`; // Higher index for the top card
-            project.style.transition = "transform 0.5s ease-out";
+            project.style.transition = "transform 1s ease-out";
         });
     }
 
     // Function to unstack the cards
     function unstackCards() {
         dropdowns.forEach(dropdown => {
-            dropdown.style.display = 'block';
+            dropdown.style.display = 'inline-block';
         });
 
         overlays.forEach(overlay => {
             overlay.style.opacity = '0';
-            overlay.style.transition = "opacity 0.5s ease-out";
+            overlay.style.transition = "opacity 1s ease-out";
         });
 
         placeholders.forEach(placeholder => {
@@ -111,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         titles.forEach(title => {
             title.style.opacity = "0";
-            title.style.transition = "opacity 0.5s ease-out";
+            // title.style.transition = "opacity 1s ease-out";
         });
 
         projects.forEach((project, index) => {
@@ -120,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
             project.style.position = "relative"; // Reset to normal flow
             project.style.transform = `translateY(${index * 50}px) rotate(0deg) scale(1)`; // Spread cards and reset scale
             project.style.zIndex = "0"; // Reset z-index
-            project.style.transition = "transform 0.5s ease-out";
+            project.style.transition = "transform 1s ease-out";
         });
         // Re-enable the observer after unstacking
         setTimeout(() => toggleObserver(true), 500); // Wait for animations to finish
