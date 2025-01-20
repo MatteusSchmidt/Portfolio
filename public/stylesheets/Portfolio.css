@@ -511,6 +511,51 @@ section h2 {
     text-decoration: none;
 }
 
+.overlay {
+    position: absolute;
+    justify-content: center;
+    display: block;
+    background: rgba(255, 255, 255, 0.4) center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    align-items: center;
+    margin: -50px 0 0 -130px;
+    /*   height: 100;
+      width: 2000px; */
+    overflow: clip;
+    height: 120%;
+    width:120%;
+}
+
+.project-title {
+    position: absolute;
+    justify-content: center;
+    width: 300px;
+    display: block;
+    margin-top: 130px;
+    font-weight: 1000;
+    font-size: 26px;
+    background-color: #f7f7f8;
+    background-size: cover;
+    background-position: center center;
+    border: 1px solid rgba(119, 119, 119, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+}
+
+.project-title:hover, .dropdown:hover {
+    cursor: pointer;
+}
+
+.dropdown {
+    pointer-events: auto;
+    display: block;
+    height: 50px;
+    width: 50px;
+    rotate: 180deg;
+    margin-top: 20px;
+}
+
 
 /* CSS for all skill elements:
         SKILL SECTION */
@@ -933,7 +978,6 @@ section h2 {
 .certification-link:hover #arrow {
     /*animation: new-tab-animation .5s forwards ease-in-out;*/
     transform: translateY(-3px) scale(1.15);
-
 }
 
 /* CSS for all form elements:

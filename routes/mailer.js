@@ -41,7 +41,7 @@ router.post("/", (req, res) => {
                 console.error(err);
                 return res.status(500).json({ error: "Something went wrong." });
             } else {
-                return res.status(200).json({ message: "Email successfully sent to recipient!" });
+                return res.status(200).json({ message: "Email received!" });
             }
         });
     });

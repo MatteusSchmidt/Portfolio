@@ -31,22 +31,144 @@ function highlightClosestSection() {
 window.addEventListener('scroll', highlightClosestSection);
 document.addEventListener('DOMContentLoaded', highlightClosestSection);
 
+document.addEventListener("DOMContentLoaded", () => {
+    const projects = document.querySelectorAll(".project");
+    const placeholders = document.querySelectorAll(".placeholder");
+    const titles = document.querySelectorAll(".project-title");
+    const overlays = document.querySelectorAll('.overlay');
+    const dropdowns = document.querySelectorAll('.dropdown');
+    let stacked = true; // Initial state is stacked
 
-const projects = document.querySelectorAll(".project");
-const projectsObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        const scale = 0.7 + (0.3 * entry.intersectionRatio);
-        entry.target.style.transform = `scale(${scale})`;
-        entry.target.style.transform = `opacity(${scale})`
+    // IntersectionObserver logic
+    const projectsObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const scale = 0.7 + (0.3 * entry.intersectionRatio);
+            entry.target.style.transform = `scale(${scale})`; // Adjust scale based on visibility
+            entry.target.style.opacity = `${scale}`; // Adjust opacity
+        });
+    }, {
+        threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+        rootMargin: "-20px",
     });
-}, {
-    threshold: Array.from({length: 101}, (_, i) => i / 100),
-    rootMargin: "-20px",
-});
-projects.forEach(project => {
-    projectsObserver.observe(project);
+
+    // Observe each project for scaling on intersection
+    projects.forEach(project => {
+        projectsObserver.observe(project);
+    });
+
+    // Function to stack the cards
+    function stackCards() {
+        // Temporarily disable the observer
+        toggleObserver(false);
+
+        dropdowns.forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+
+        overlays.forEach(overlay => {
+            overlay.style.opacity = '1';
+            overlay.style.transition = "opacity 0.5s ease-out";
+        });
+
+        placeholders.forEach(placeholder => {
+            placeholder.style.height = "400px";
+        });
+
+        titles.forEach(title => {
+            title.style.opacity = "1";
+            title.style.transition = "opacity 0.5s ease-out";
+        });
+
+        projects.forEach((project, index) => {
+            const maxWidth = 830; // Maximum width for the cards in pixels
+            const baseScale = 1 - index * 0.03; // Decrease scale with index
+            const width = Math.min(maxWidth, window.innerWidth - 100);
+
+            project.style.marginTop = `${index === 0 ? -453 : -403}px`;
+            project.style.position = "absolute"; // Stack on top of each other
+            project.style.opacity = "1";
+            project.style.width = `${width}px`; // Apply dynamic width based on scale
+            project.style.transform = `scale(${baseScale}) translateY(${index * 5}px) rotate(${index !== 0 ? ((index % 2 === 0 ? -1 : 1) * 2) : 0}deg)`; // Combine scale and stacking
+            project.style.zIndex = `${-1-index}`; // Higher index for the top card
+            project.style.transition = "transform 0.5s ease-out";
+        });
+    }
+
+    // Function to unstack the cards
+    function unstackCards() {
+        dropdowns.forEach(dropdown => {
+            dropdown.style.display = 'block';
+        });
+
+        overlays.forEach(overlay => {
+            overlay.style.opacity = '0';
+            overlay.style.transition = "opacity 0.5s ease-out";
+        });
+
+        placeholders.forEach(placeholder => {
+            placeholder.style.height = "0";
+        });
+
+        titles.forEach(title => {
+            title.style.opacity = "0";
+            title.style.transition = "opacity 0.5s ease-out";
+        });
+
+        projects.forEach((project, index) => {
+            project.style.width = "100%";
+            project.style.marginTop = `${index === 0 ? 0 : 50}px`;
+            project.style.position = "relative"; // Reset to normal flow
+            project.style.transform = `translateY(${index * 50}px) rotate(0deg) scale(1)`; // Spread cards and reset scale
+            project.style.zIndex = "0"; // Reset z-index
+            project.style.transition = "transform 0.5s ease-out";
+        });
+        // Re-enable the observer after unstacking
+        setTimeout(() => toggleObserver(true), 500); // Wait for animations to finish
+    }
+
+    // Function to enable/disable the IntersectionObserver
+    function toggleObserver(enable) {
+        if (enable) {
+            projects.forEach(project => projectsObserver.observe(project));
+        } else {
+            projects.forEach(project => projectsObserver.unobserve(project));
+        }
+    }
+
+    // Add click event listener to toggle stacking
+    titles.forEach(title => {
+        title.addEventListener("click", () => {
+            if (stacked) {
+                unstackCards();
+            } else {
+                stackCards();
+            }
+            stacked = !stacked; // Toggle state
+        });
+    });
+
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener("click", () => {
+            if (stacked) {
+                unstackCards();
+            } else {
+                stackCards();
+            }
+            stacked = !stacked; // Toggle state
+        });
+    });
+
+    // Initially stack the cards on page load
+    stackCards();
+
+    window.addEventListener("resize", () => {
+        if (stacked) {
+            stackCards(); // Recalculate and reapply stacked widths on resize
+        }
+    });
 });
 
+//
 
 const skills = document.querySelectorAll(".skill-object")
 const skillsObserver = new IntersectionObserver(entries => {
