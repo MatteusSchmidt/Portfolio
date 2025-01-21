@@ -514,16 +514,14 @@ section h2 {
     position: absolute;
     justify-content: center;
     display: block;
-    background: rgba(255, 255, 255, 0.2) center;
+    background: rgba(255, 255, 255, 0.1) center;
     backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(1px);
     align-items: center;
     margin: -50px 0 0 -130px;
-    /*   height: 100;
-      width: 2000px; */
     overflow: clip;
     height: 120%;
-    width:120%;
+    width:1000%;
 }
 
 .project-title {
@@ -1165,7 +1163,7 @@ footer {
 
     .project-title {
         width: 250px;
-        margin-top: 130px;
+        margin-top: 90px;
         font-weight: 1000;
         font-size: 22px;
     }
@@ -1422,7 +1420,7 @@ footer {
         }
         .project-title {
             width: 200px;
-            margin-top: 130px;
+            margin-top: 80px;
             font-weight: 1000;
             font-size: 20px;
         }
@@ -1438,6 +1436,7 @@ footer {
             height: 35px;
             width: 100px;
             margin-bottom: 20px;
+            pointer-events: auto;
         }
         .project-links a label  {
             font-size: 14px;
@@ -1641,9 +1640,6 @@ footer {
         box-shadow: 0 0 4px 0 white;
     }
 
-    .crests {
-
-    }
     .USC-image {
         border-radius: 10px;
         box-shadow: 0 0 4px 0 white;

@@ -200,12 +200,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         overlays.forEach(overlay => {
+            overlay.style.display = 'block';
             overlay.style.opacity = '1';
             overlay.style.transition = "opacity 1s ease-out";
         });
 
         placeholders.forEach(placeholder => {
-            if (window.innerWidth <= 1024) {
+            if (window.innerWidth <= 400) {
+                placeholder.style.height = "400px";
+            }
+            else if (window.innerWidth <= 1024) {
                 placeholder.style.height = "360px";
             }
             else {
@@ -214,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         titles.forEach(title => {
-            title.style.opacity = "1";
+            title.style.display = "block";
             // title.style.transition = "opacity 1s ease-out";
         });
 
@@ -234,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
             project.style.width = `${width}px`; // Apply dynamic width based on scale
             project.style.transform = `scale(${baseScale}) translateY(${index * 5}px) rotate(${index !== 0 ? ((index % 2 === 0 ? -1 : 1) * 2) : 0}deg)`; // Combine scale and stacking
             project.style.zIndex = `${-1-index}`; // Higher index for the top card
-            project.style.transition = "transform .5s ease-out";
+            // project.style.transition = "transform .5s ease-out";
         });
     }
 
@@ -247,6 +251,12 @@ document.addEventListener("DOMContentLoaded", () => {
         overlays.forEach(overlay => {
             overlay.style.opacity = '0';
             overlay.style.transition = "opacity 1s ease-out";
+            overlay.addEventListener('transitionend', function handleTransitionEnd() {
+                if (event.propertyName === 'opacity') {
+                    overlay.style.display = 'none';
+                    overlay.removeEventListener('transitionend', handleTransitionEnd);
+                }
+            });
         });
 
         placeholders.forEach(placeholder => {
@@ -254,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         titles.forEach(title => {
-            title.style.opacity = "0";
+            title.style.display = "none";
             // title.style.transition = "opacity 1s ease-out";
         });
 
@@ -264,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
             project.style.position = "relative"; // Reset to normal flow
             project.style.transform = `translateY(${index * 50}px) rotate(0deg) scale(1)`; // Spread cards and reset scale
             project.style.zIndex = "0"; // Reset z-index
-            project.style.transition = "transform .2s ease-out";
+            // project.style.transition = "transform .2s ease-out";
         });
         // Re-enable the observer after unstacking
         setTimeout(() => toggleObserver(true), 500); // Wait for animations to finish
