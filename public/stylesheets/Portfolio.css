@@ -612,7 +612,7 @@ section h2 {
     font-weight: 500;
 }
 
-#mysql {
+.mysql {
     width: 130px;
 }
 
@@ -625,7 +625,7 @@ section h2 {
 }
 
 #firebase {
-    width: 57px;
+    width: 70px;
 }
 
 #node {
@@ -681,8 +681,16 @@ section h2 {
     box-sizing: border-box;
 }
 
-.experience-text-container div, .experience-text-container b, .experience-text-container i {
+.experience-text-container div {
     font-size: 14px;
+}
+
+.school {
+    font-size: 12px;
+}
+
+.header {
+    font-size: 16px;
 }
 
 .experience-text-container i {
@@ -826,6 +834,7 @@ section h2 {
     border: 1px solid rgba(119, 119, 119, 0.3);
     border-radius: 6px;
     white-space: normal;
+    margin-bottom: 40px;
 }
 
 .USC-image {
@@ -839,6 +848,7 @@ section h2 {
     justify-content: left;
     text-align: left;
     padding-left: 20px;
+    width: 100%;
 }
 
 #institution #institution-2 {
@@ -866,6 +876,10 @@ section h2 {
     margin-top: 40px;
     margin-bottom: -20px;
     line-height: 20px
+}
+
+.date {
+    margin-top: 33px;
 }
 
 .row {
@@ -902,7 +916,7 @@ section h2 {
     text-wrap: inherit;
 }
 
-#GDAS-container, #GA-container {
+#AWSML-container, #GA-container {
     margin-left: 20px;
 }
 
@@ -915,7 +929,7 @@ section h2 {
     height: 60px;
 }
 
-#GDAS, #GA {
+#AWSML, #GA {
     border-radius: 30px;
     box-shadow: 0 0 4px 0 black;
 }
@@ -1194,7 +1208,7 @@ footer {
         font-weight: 500;
     }
 
-    #mysql {
+    .mysql {
         width: 90px;
     }
 
@@ -1203,11 +1217,11 @@ footer {
     }
 
     #django {
-        width: 40px;
+        width: 47px;
     }
 
     #firebase {
-        width: 38px;
+        width: 50px;
     }
 
     #node {
@@ -1294,6 +1308,7 @@ footer {
 
     .education-container {
         max-width: 610px;
+        margin-bottom: 30px;
     }
 
     .education-text-container p, .education-text-container ul li {
@@ -1304,7 +1319,7 @@ footer {
         font-size: 14px;
     }
 
-    #GDAS-container, #GA-container {
+    #AWSML-container, #GA-container {
         margin-left: 15px;
     }
 
@@ -1377,12 +1392,16 @@ footer {
             margin: 0;
         }
 
-        .experience-text-container i, .experience-text-container b {
-            font-size: 13px;
-        }
-
         .experience-text-container div {
             font-size: 12px;
+        }
+
+        .school {
+            font-size: 10px;
+        }
+
+        .header {
+            font-size: 14px;
         }
 
         .skill-container {
@@ -1392,6 +1411,9 @@ footer {
 
         .USC-image {
             display: none;
+        }
+        .date {
+            margin-top:13px;
         }
 
         #education-header, #education-header-2 {
@@ -1489,13 +1511,13 @@ footer {
             flex: 0 1 35%;
         }
 
-        #GDAS-container {
+        #AWSML-container {
             flex-basis: 40%;
             text-align: center;
             padding-top: 20px;
         }
 
-        #GDAS-container, #GA-container, #PA-container {
+        #AWSML-container, #GA-container, #PA-container {
             margin: 0;
         }
 
@@ -1611,7 +1633,7 @@ footer {
         background-color: #7e7e7e;
     }
 
-    .project-description-container .row h3, .project-description-container .row p, .project-description, .made-with small {
+    .project-description-container .row h3, #education h3, .project-description-container .row p, .project-description, .made-with small {
         color: ghostwhite;
     }
 
@@ -1635,7 +1657,7 @@ footer {
         color: #dedcdc;
     }
 
-    #GDAS, #GA {
+    #AWSML, #GDAS {
         border-radius: 30px;
         box-shadow: 0 0 4px 0 white;
     }
@@ -1647,6 +1669,10 @@ footer {
     .certification-object-container, .education-container, .experience-text-container {
         border-radius: 5px;
         box-shadow: 0 0 2px 1px ghostwhite;
+    }
+
+    .education-container {
+        margin-bottom: 20px;
     }
 
     .project {
