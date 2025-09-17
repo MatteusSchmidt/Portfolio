@@ -565,15 +565,18 @@ section h2 {
 
 .skill-container {
     display: flex;
+    row-gap: 20px;
     justify-content: center;
     align-items: center;
     height: auto;
     width: auto;
     max-width: 900px;
     flex-wrap: wrap;
+    margin-bottom: 75px;
 }
 
 .skill-object {
+    height: 75px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -603,8 +606,8 @@ section h2 {
 }
 
 .skill-image {
-    height: 75px;
-    width: 75px;
+    height: 100%;
+    width: auto;
 }
 
 .skill-label {
@@ -1188,6 +1191,7 @@ footer {
     }
 
     .skill-object {
+        height: 50px;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -1199,8 +1203,8 @@ footer {
     }
 
     .skill-image {
-        height: 50px;
-        width: 50px;
+        height: 100%;
+        width: auto;
     }
 
     .skill-label {
@@ -1208,9 +1212,9 @@ footer {
         font-weight: 500;
     }
 
-    .mysql {
-        width: 90px;
-    }
+    /*.mysql {*/
+    /*    width: 90px;*/
+    /*}*/
 
     #c\+\+ {
         width: 47px;

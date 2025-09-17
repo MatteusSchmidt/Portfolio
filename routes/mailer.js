@@ -8,9 +8,10 @@ const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
 const transporter = nodemailer.createTransport( {
-    host: "schmidtwork.dev",
+    host: "smtp.gmail.com",
     secureConnection: true,
-    port: 465,
+    TLS: true,
+    port: 587,
     auth: {
         user: process.env.USERNAME,
         pass: process.env.PASSWORD
