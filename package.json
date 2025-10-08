@@ -4,7 +4,7 @@
   "description": "My Portfolio",
   "main": "app.js",
   "scripts": {
-    "start": "node bin/www"
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^2.2.0",
@@ -12,7 +12,7 @@
     "debug": "4.4.3",
     "dotenv": "^17.2.2",
     "ejs": "^3.1.10",
-    "express": "5.1.0",
+    "express": "^5.1.0",
     "http-errors": "~2.0.0",
     "morgan": "~1.10.1",
     "multiparty": "^4.2.3",
@@ -22,5 +22,14 @@
     "node": ">=22.0"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatteusSchmidt/Portfolio-Site.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/MatteusSchmidt/Portfolio-Site/issues"
+  },
+  "homepage": "https://github.com/MatteusSchmidt/Portfolio-Site#readme"
 }

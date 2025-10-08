@@ -854,6 +854,10 @@ section h2 {
     width: 100%;
 }
 
+.education-text-container div p{
+    line-height: 1.5;
+}
+
 #institution #institution-2 {
     font-weight: 700;
     color: dimgray;
@@ -870,7 +874,7 @@ section h2 {
 }
 
 .education-text-container p {
-    margin-bottom: -28px;
+    margin-bottom: -15px;
 }
 
 #education-header, #education-header-2 {

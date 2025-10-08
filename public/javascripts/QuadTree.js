@@ -66,6 +66,10 @@ class QuadTree {
             this._queryRange(node.NE, xMin, xMax, yMin, yMax, xMid, curXMax, yMid, curYMax, found);
         }
     }
+
+    clear() {
+        this.root = null;
+    }
 }
 
 class Nodes {
