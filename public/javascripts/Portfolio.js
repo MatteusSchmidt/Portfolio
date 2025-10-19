@@ -80,28 +80,32 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: "-20px",
     });
 
-    projects.forEach(project => {
-        projectsObserver.observe(project);
-    });
+    function updateObserverState(shouldStack) {
+        projects.forEach(project => {
+            if (shouldStack) {
+                projectsObserver.unobserve(project);
+                // Clear observer-applied styles when stacking
+                project.style.opacity = "1";
+            } else {
+                projectsObserver.observe(project);
+            }
+        });
+    }
 
     function stackCards() {
-        toggleObserver(false);
+        updateObserverState(true);
 
         dropdowns.forEach(dropdown => {
             dropdown.style.display = 'none';
         });
 
         overlays.forEach(overlay => {
-            // Clean up any existing transition handler
             if (overlay._transitionHandler) {
                 overlay.removeEventListener('transitionend', overlay._transitionHandler);
                 delete overlay._transitionHandler;
             }
 
-            // Mark overlay as intentionally visible
             overlay._shouldBeVisible = true;
-
-            // Show overlay immediately without transition
             overlay.style.transition = "none";
             overlay.style.display = 'block';
             overlay.style.opacity = '1';
@@ -146,17 +150,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         overlays.forEach(overlay => {
-            // Mark overlay as intentionally hidden
             overlay._shouldBeVisible = false;
 
-            // Remove any existing listener first
             if (overlay._transitionHandler) {
                 overlay.removeEventListener('transitionend', overlay._transitionHandler);
             }
 
-            // Define and store the handler
             overlay._transitionHandler = function handleTransitionEnd(event) {
-                // Only hide if it's still supposed to be hidden (not re-stacked during transition)
                 if (event.propertyName === 'opacity' && !overlay._shouldBeVisible) {
                     overlay.style.display = 'none';
                 }
@@ -185,15 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
             project.style.zIndex = "0";
         });
 
-        setTimeout(() => toggleObserver(true), 500);
-    }
-
-    function toggleObserver(enable) {
-        if (enable) {
-            projects.forEach(project => projectsObserver.observe(project));
-        } else {
-            projects.forEach(project => projectsObserver.unobserve(project));
-        }
+        // Enable observer AFTER all styles are reset
+        updateObserverState(false);
     }
 
     // Toggle stacking on title click

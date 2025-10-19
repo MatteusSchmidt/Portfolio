@@ -515,13 +515,15 @@ section h2 {
     justify-content: center;
     display: block;
     background: rgba(255, 255, 255, 0.1) center;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
     align-items: center;
     margin: -50px 0 0 -130px;
-    overflow: clip;
+    overflow: hidden;
     height: 120%;
-    width:1000%;
+    width: 100%;
+    max-width: 1000px;
+    z-index: 100;
 }
 
 .project-title {
